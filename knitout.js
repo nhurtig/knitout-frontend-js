@@ -55,6 +55,8 @@ Writer.prototype.addHeader = function(name, value) {
     } else if (name === "Position") {
         let supported_positions = ['Left', 'Center', 'Right', 'Keep'];
         if (!supported_positions.includes(value)) throw new Error(`'Position' header must have one of the following values: ${supported_positions.join(', ')}. Provided value: '${value}' is not valid.`);
+    } else if (name === "Width") {
+        if ((typeof (value) !== 'string' && !/^[0-9]+$/.test(value))) throw new Error(`Value of 'Width' header must be a string representing a number. Provided value: '${value}' is not valid.`);
     } else if (name.startsWith("Yarn-")) {
         //check for valid carrier name, warn otherwise
         let carrierName = name.substr(5);
